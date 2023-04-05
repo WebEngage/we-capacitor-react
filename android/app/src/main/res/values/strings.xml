@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ionicTest</string>
+    <string name="title_activity_main">ionicTest</string>
+    <string name="package_name">com.webEngage.stageSwift</string>
+    <string name="custom_url_scheme">com.webEngage.stageSwift</string>
+</resources>
