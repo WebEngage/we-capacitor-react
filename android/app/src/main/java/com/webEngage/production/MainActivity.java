@@ -1,4 +1,4 @@
-package com.webEngage.stageSwift;
+package com.webEngage.production;
 
 import com.getcapacitor.BridgeActivity;
 

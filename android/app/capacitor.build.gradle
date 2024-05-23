@@ -13,6 +13,7 @@ dependencies {
     implementation project(':capacitor-haptics')
     implementation project(':capacitor-keyboard')
     implementation project(':capacitor-status-bar')
+    implementation project(':webengage-android-fcm')
 
 }
 apply from: "../../node_modules/cordova-plugin-webengage/src/android/WebEngagePlugin.gradle"

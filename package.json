@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "@awesome-cordova-plugins/core": "^6.7.0",
     "@awesome-cordova-plugins/webengage": "^6.3.0",
     "@capacitor/android": "4.6.3",
     "@capacitor/app": "4.1.1",
@@ -30,8 +31,10 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^5.0.0",
+    "rxjs": "^7.8.1",
     "typescript": "^4.1.3",
     "web-vitals": "^0.2.4",
+    "webengage-android-fcm": "file:webengage-android-fcm-2.0.0.tgz",
     "workbox-background-sync": "^5.1.4",
     "workbox-broadcast-update": "^5.1.4",
     "workbox-cacheable-response": "^5.1.4",
