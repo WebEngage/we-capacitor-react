@@ -10,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <meta-data android:name="com.webengage.sdk.android.key" android:value="WEBENGAGE_LICENSE" />
+        <meta-data android:name="com.webengage.sdk.android.key" android:value="~134105693" />
         <meta-data android:name="com.webengage.sdk.android.debug" android:value="true" />
         <meta-data android:name="com.webengage.sdk.android.environment" android:value="us" />
 

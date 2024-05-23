@@ -266,20 +266,9 @@ const MessageListItem: React.FC<MessageListItemProps> = ({ message }) => {
   }
 
   return (
-    <IonItem
-      button
-      onClick={() => handleClick(message.title)}
-      placeholder={undefined}
-      onPointerEnterCapture={undefined}
-      onPointerLeaveCapture={undefined}
-    >
+    <IonItem button onClick={() => handleClick(message.title)}>
       <div slot="start" className="dot"></div>
-      <IonLabel
-        className="ion-text-wrap"
-        placeholder={undefined}
-        onPointerEnterCapture={undefined}
-        onPointerLeaveCapture={undefined}
-      >
+      <IonLabel className="ion-text-wrap">
         <h2>{message.title}</h2>
       </IonLabel>
     </IonItem>

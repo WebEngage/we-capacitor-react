@@ -58,11 +58,7 @@ const App: React.FC = () => {
   return (
     <IonApp>
       <IonReactRouter>
-        <IonRouterOutlet
-          placeholder={undefined}
-          onPointerEnterCapture={undefined}
-          onPointerLeaveCapture={undefined}
-        >
+        <IonRouterOutlet>
           <Route path="/" exact={true}>
             <Redirect to="/home" />
           </Route>

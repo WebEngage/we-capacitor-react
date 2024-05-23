@@ -32,110 +32,36 @@ const Home: React.FC = () => {
   };
 
   return (
-    <IonPage
-      id="home-page"
-      placeholder={undefined}
-      onPointerEnterCapture={undefined}
-      onPointerLeaveCapture={undefined}
-    >
-      <IonHeader
-        placeholder={undefined}
-        onPointerEnterCapture={undefined}
-        onPointerLeaveCapture={undefined}
-      >
-        <IonToolbar
-          placeholder={undefined}
-          onPointerEnterCapture={undefined}
-          onPointerLeaveCapture={undefined}
-        >
-          <IonTitle
-            placeholder={undefined}
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
-          >
-            WebEngage Ionic Capacitor
-          </IonTitle>
+    <IonPage id="home-page">
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>WebEngage Ionic Capacitor</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent
-        fullscreen
-        placeholder={undefined}
-        onPointerEnterCapture={undefined}
-        onPointerLeaveCapture={undefined}
-      >
-        <IonRefresher
-          slot="fixed"
-          onIonRefresh={refresh}
-          placeholder={undefined}
-          onPointerEnterCapture={undefined}
-          onPointerLeaveCapture={undefined}
-        >
-          <IonRefresherContent
-            placeholder={undefined}
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
-          ></IonRefresherContent>
+      <IonContent fullscreen>
+        <IonRefresher slot="fixed" onIonRefresh={refresh}>
+          <IonRefresherContent></IonRefresherContent>
         </IonRefresher>
 
-        <IonHeader
-          collapse="condense"
-          placeholder={undefined}
-          onPointerEnterCapture={undefined}
-          onPointerLeaveCapture={undefined}
-        >
-          <IonToolbar
-            placeholder={undefined}
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
-          >
-            <IonTitle
-              size="large"
-              placeholder={undefined}
-              onPointerEnterCapture={undefined}
-              onPointerLeaveCapture={undefined}
-            >
-              USER ANALYTICS
-            </IonTitle>
+        <IonHeader collapse="condense">
+          <IonToolbar>
+            <IonTitle size="large">USER ANALYTICS</IonTitle>
           </IonToolbar>
         </IonHeader>
 
-        <IonList
-          placeholder={undefined}
-          onPointerEnterCapture={undefined}
-          onPointerLeaveCapture={undefined}
-        >
+        <IonList>
           {analyticList.map((m) => (
             <MessageListItem key={m.id} message={m} />
           ))}
         </IonList>
 
-        <IonHeader
-          collapse="condense"
-          placeholder={undefined}
-          onPointerEnterCapture={undefined}
-          onPointerLeaveCapture={undefined}
-        >
-          <IonToolbar
-            placeholder={undefined}
-            onPointerEnterCapture={undefined}
-            onPointerLeaveCapture={undefined}
-          >
-            <IonTitle
-              size="large"
-              placeholder={undefined}
-              onPointerEnterCapture={undefined}
-              onPointerLeaveCapture={undefined}
-            >
-              TRACK EVENTS
-            </IonTitle>
+        <IonHeader collapse="condense">
+          <IonToolbar>
+            <IonTitle size="large">TRACK EVENTS</IonTitle>
           </IonToolbar>
         </IonHeader>
 
-        <IonList
-          placeholder={undefined}
-          onPointerEnterCapture={undefined}
-          onPointerLeaveCapture={undefined}
-        >
+        <IonList>
           {eventList.map((m) => (
             <MessageListItem key={m.id} message={m} />
           ))}
