@@ -11,6 +11,7 @@ import {
   Webengage,
   WebengagePush,
   WebengageNotification,
+  WebengageUser,
 } from "@awesome-cordova-plugins/webengage";
 
 import { WEAndroidFCM } from "webengage-android-fcm";
@@ -37,22 +38,28 @@ import "./theme/variables.css";
 setupIonicReact();
 // Uncomment the below line After following push Docs
 // WEAndroidFCM.updateToken();
+WebengageUser.setDevicePushOptIn(true); // To be called Inside the push permission method
 WebengagePush.onClick(function (deeplink: any, customData: any) {
   console.log("Push clicked");
 });
 
+WebengageNotification.onPrepared(function (inAppData: any) {
+  console.log("In-app onPrepared- ", JSON.stringify(inAppData));
+});
+
 WebengageNotification.onShown(function (inAppData: any) {
-  console.log("In-app shown");
+  console.log("In-app shown - ", JSON.stringify(inAppData));
 });
 
 WebengageNotification.onDismiss(function (inAppData: any) {
-  console.log("In-app dismissed");
+  console.log("In-app dismissed- ", JSON.stringify(inAppData));
 });
 
 WebengageNotification.onClick(function (inAppData: any, actionId: any) {
-  console.log("In-app shown");
+  console.log("In-app click- ", JSON.stringify(inAppData));
 });
 Webengage.engage();
+// Webengage.engage({ android: { autoGAIDTracking: true } }); // Enable GAID tracking
 
 const App: React.FC = () => {
   return (
