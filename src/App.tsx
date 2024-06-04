@@ -13,6 +13,7 @@ import {
   WebengageNotification,
   WebengageUser,
 } from "@awesome-cordova-plugins/webengage";
+import { PushNotifications } from "@capacitor/push-notifications";
 
 import { WEAndroidFCM } from "webengage-android-fcm";
 
@@ -37,8 +38,9 @@ import "./theme/variables.css";
 
 setupIonicReact();
 // Uncomment the below line After following push Docs
-// WEAndroidFCM.updateToken();
-WebengageUser.setDevicePushOptIn(true); // To be called Inside the push permission method
+WEAndroidFCM.updateToken();
+
+registerForPushNotificaiton();
 WebengagePush.onClick(function (deeplink: any, customData: any) {
   console.log("Push clicked");
 });
@@ -60,6 +62,19 @@ WebengageNotification.onClick(function (inAppData: any, actionId: any) {
 });
 Webengage.engage();
 // Webengage.engage({ android: { autoGAIDTracking: true } }); // Enable GAID tracking
+
+function registerForPushNotificaiton() {
+  PushNotifications.register();
+  PushNotifications.requestPermissions().then((result) => {
+    if (result.receive === "granted") {
+      // Permission granted
+      WebengageUser.setDevicePushOptIn(true);
+    } else {
+      // Permission denied
+      WebengageUser.setDevicePushOptIn(false);
+    }
+  });
+}
 
 const App: React.FC = () => {
   return (
