@@ -15,7 +15,7 @@ import {
 } from "@awesome-cordova-plugins/webengage";
 import { PushNotifications } from "@capacitor/push-notifications";
 
-import { WEAndroidFCM } from "webengage-android-fcm";
+// import { WEAndroidFCM } from "webengage-android-fcm";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -38,7 +38,7 @@ import "./theme/variables.css";
 
 setupIonicReact();
 // Uncomment the below line After following push Docs
-WEAndroidFCM.updateToken();
+// WEAndroidFCM.updateToken();
 
 registerForPushNotificaiton();
 WebengagePush.onClick(function (deeplink: any, customData: any) {
