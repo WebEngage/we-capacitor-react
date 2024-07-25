@@ -17,5 +17,5 @@ project(':capacitor-push-notifications').projectDir = new File('../node_modules/
 include ':capacitor-status-bar'
 project(':capacitor-status-bar').projectDir = new File('../node_modules/@capacitor/status-bar/android')
 
-include ':webengage-android-fcm'
-project(':webengage-android-fcm').projectDir = new File('../node_modules/webengage-android-fcm/android')
+include ':we-cap-android-fcm'
+project(':we-cap-android-fcm').projectDir = new File('../node_modules/we-cap-android-fcm/android')

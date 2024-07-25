@@ -15,7 +15,7 @@ import {
 } from "@awesome-cordova-plugins/webengage";
 import { PushNotifications } from "@capacitor/push-notifications";
 
-import { WEAndroidFCM } from "webengage-android-fcm";
+import { WEAndroidFCM } from "we-cap-android-fcm";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
