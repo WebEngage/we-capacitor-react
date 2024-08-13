@@ -67,6 +67,14 @@ const NotificationInbox: React.FC = () => {
         setNotificationList(updatedNotificationList);
     };
 
+    const trackAsClick = (index: number) => {
+        WECapInbox.trackClick(notificationList[index])
+    }
+
+    const trackAsView = (index: number) => {
+        WECapInbox.trackView(notificationList[index])
+    }
+
     const markAllAsRead = () => {
 
         // Call the plugin's readAll method
@@ -133,6 +141,8 @@ const NotificationInbox: React.FC = () => {
                                 <IonButton color="primary" onClick={() => markAsRead(index)}>Mark Read</IonButton>
                                 <IonButton color="secondary" onClick={() => markAsUnread(index)}>Mark Unread</IonButton>
                                 <IonButton color="danger" onClick={() => markAsDeleted(index)}>Delete</IonButton>
+                                <IonButton color="danger" onClick={() => trackAsClick(index)}>Track Click</IonButton>
+                                <IonButton color="danger" onClick={() => trackAsView(index)}>Track View</IonButton>
                             </IonButtons>
                         </IonItem>
                     ))}
