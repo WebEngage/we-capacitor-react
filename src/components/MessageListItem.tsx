@@ -16,7 +16,19 @@ const MessageListItem: React.FC<MessageListItemProps> = ({ message }) => {
       case "Perform Login": {
         presentAlert({
           header: "Alert",
-          message: "Enter your user name.",
+          message: "Enter your user name and token",
+          inputs: [
+            {
+              name: 'username',
+              type: 'text',
+              placeholder: 'User Name'
+            },
+            {
+              name: 'token',
+              type: 'text',
+              placeholder: 'JWT Token'
+            }
+          ],
           buttons: [
             {
               text: "Cancel",
@@ -25,18 +37,54 @@ const MessageListItem: React.FC<MessageListItemProps> = ({ message }) => {
             {
               text: "OK",
               role: "confirm",
-              handler(input) {
-                console.log(input[0]);
-                WebengageUser.login(String(input[0]));
+              handler(input:any) {
+                const username = input.username;
+                const secureToken = input.token;
+                console.log("Username:", username);
+                console.log("JWT Token:", secureToken);
+                WebengageUser.login(String(username), String(secureToken));
               },
             },
           ],
+        });
+        
+        break;
+      }
+      case "Update Secure Token": {
+        presentAlert({
+          header: "Alert",
+          message: "Enter your user name and token",
           inputs: [
             {
-              placeholder: "UserName",
+              name: 'username',
+              type: 'text',
+              placeholder: 'User Name'
+            },
+            {
+              name: 'token',
+              type: 'text',
+              placeholder: 'JWT Token'
+            }
+          ],
+          buttons: [
+            {
+              text: "Cancel",
+              role: "cancel",
+            },
+            {
+              text: "OK",
+              role: "confirm",
+              handler(input:any) {
+                const username = input.username;
+                const secureToken = input.token;
+                console.log("Username:", username);
+                console.log("JWT Token:", secureToken);
+                WebengageUser.setSecureToken(String(username), String(secureToken));
+              },
             },
           ],
         });
+        
         break;
       }
       case "Perform Logout": {

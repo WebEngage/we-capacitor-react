@@ -17,7 +17,8 @@ import {
 } from "@ionic/react";
 import "./Home.css";
 import { Webengage, WebengageUser } from "@awesome-cordova-plugins/webengage";
-
+import { WECapInbox } from '@awesome-cordova-plugins/we-cap-inbox'
+import { useHistory } from "react-router";
 type NotificationType =
   | "push"
   | "sms"
@@ -29,6 +30,7 @@ type NotificationType =
 const Home: React.FC = () => {
   const [analyticList, setAnalytics] = useState<ListItem[]>([]);
   const [eventList, setEvents] = useState<ListItem[]>([]);
+  const history = useHistory();
 
   const [userOptInList, setUserOptInList] = useState<
     Record<NotificationType, boolean>
@@ -54,6 +56,19 @@ const Home: React.FC = () => {
     }, 3000);
   };
 
+  const resetCount = () => {
+    WECapInbox.resetNotificationCount();
+  }
+
+  const getNotificationCount = () => {
+    WECapInbox.getNotificationCount(function(count: any) {
+      console.log("WebEngage: Success! notification count is - ",count)
+    }, function(err: any) {
+      console.log("WebEngage: Error! notification Count",err)
+    })
+  }
+
+
   const handleNotificationChange = (e: any, type: NotificationType) => {
     WebengageUser.setUserOptIn(type, e.detail.checked);
     setUserOptInList({
@@ -65,6 +80,10 @@ const Home: React.FC = () => {
   const startGAIDTracking = () => {
     Webengage.startGAIDTracking();
   };
+
+  const navigateToInbox = () => {
+    history.push('/notificationInbox')
+  }
 
   return (
     <IonPage id="home-page">
@@ -106,6 +125,27 @@ const Home: React.FC = () => {
           <div slot="start" className="dot"></div>
           <IonLabel className="ion-text-wrap">
             <h2>Start GAID Tracking</h2>
+          </IonLabel>
+        </IonItem>
+
+        <IonItem button onClick={navigateToInbox}>
+          <div slot="start" className="dot"></div>
+          <IonLabel className="ion-text-wrap">
+            <h2>Notification Inbox</h2>
+          </IonLabel>
+        </IonItem>
+
+        <IonItem button onClick={getNotificationCount}>
+          <div slot="start" className="dot"></div>
+          <IonLabel className="ion-text-wrap">
+            <h2>Get notification COunt</h2>
+          </IonLabel>
+        </IonItem>
+
+        <IonItem button onClick={resetCount}>
+          <div slot="start" className="dot"></div>
+          <IonLabel className="ion-text-wrap">
+            <h2>reset Count</h2>
           </IonLabel>
         </IonItem>
 

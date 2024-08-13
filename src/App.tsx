@@ -12,6 +12,7 @@ import {
   WebengagePush,
   WebengageNotification,
   WebengageUser,
+  WebengageJwtManager,
 } from "@awesome-cordova-plugins/webengage";
 import { PushNotifications } from "@capacitor/push-notifications";
 
@@ -35,6 +36,7 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import NotificationInbox from "./pages/NotificationInbox";
 
 setupIonicReact();
 // Uncomment the below line After following push Docs
@@ -43,6 +45,14 @@ WEAndroidFCM.updateToken();
 registerForPushNotificaiton();
 WebengagePush.onClick(function (deeplink: any, customData: any) {
   console.log("Push clicked");
+});
+
+WebengageJwtManager.tokenInvalidatedCallback(function (args: any) {
+  console.log("WebEngage: Invalid Token passed. Please update your token args- ",args)
+  alert("Invalid Token passed. Please update your token")
+  console.log("WebEngage: 401: Updating WebEngage Token!")
+  // Pass your update your secureToken 
+  // WebengageUser.setSecureToken(userId,secureToken)
 });
 
 WebengageNotification.onPrepared(function (inAppData: any) {
@@ -86,6 +96,9 @@ const App: React.FC = () => {
           </Route>
           <Route path="/home" exact={true}>
             <Home />
+          </Route>
+          <Route path="/notificationInbox" exact={true}>
+            <NotificationInbox />
           </Route>
         </IonRouterOutlet>
       </IonReactRouter>

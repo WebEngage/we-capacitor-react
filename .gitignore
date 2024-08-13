@@ -8,3 +8,5 @@ android/app/release/output-metadata.json
 build/asset-manifest.json
 build/asset-manifest.json
 build/*
+webengage/*
+we-cap-inbox/*

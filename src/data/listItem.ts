@@ -9,36 +9,40 @@ const analytic: ListItem[] = [
     id: 0
   },
   {
-    title: 'Perform Logout',
+    title: 'Update Secure Token',
     id: 1
   },
   {
-    title: 'Set First Name',
+    title: 'Perform Logout',
     id: 2
   },
   {
-    title: 'Set Second Name',
+    title: 'Set First Name',
     id: 3
   },
   {
-    title: 'Set User Email',
+    title: 'Set Second Name',
     id: 4
   },
   {
-    title: 'Set User Hashed Email',
+    title: 'Set User Email',
     id: 5
   },
   {
-    title: 'Set User Phone',
+    title: 'Set User Hashed Email',
     id: 6
   },
   {
-    title: 'Set User Hashed Phone',
+    title: 'Set User Phone',
     id: 7
   },
   {
-    title: 'Set User Location',
+    title: 'Set User Hashed Phone',
     id: 8
+  },
+  {
+    title: 'Set User Location',
+    id: 9
   }
 ];
 
