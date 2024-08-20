@@ -258,6 +258,39 @@ const MessageListItem: React.FC<MessageListItemProps> = ({ message }) => {
         break;
       }
       case "Set User Location": {
+        presentAlert({
+          header: "Alert",
+          message: "Enter Latitude and Longitude",
+          inputs: [
+            {
+              name: 'latitude',
+              type: 'text',
+              placeholder: 'Latitude'
+            },
+            {
+              name: 'longitude',
+              type: 'text',
+              placeholder: 'longitude'
+            }
+          ],
+          buttons: [
+            {
+              text: "Cancel",
+              role: "cancel",
+            },
+            {
+              text: "OK",
+              role: "confirm",
+              handler(input:any) {
+                const latitude = input.latitude;
+                const longitude = input.longitude;
+                console.log("latitude:", latitude);
+                console.log("longitude:", longitude);
+                WebengageUser.setLocation(latitude, longitude);
+              },
+            },
+          ],
+        });
         break;
       }
       case "Set Screen Name": {
