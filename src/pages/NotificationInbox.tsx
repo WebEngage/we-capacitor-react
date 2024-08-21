@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonButton, IonList, IonButtons } from '@ionic/react';
-import { WECapInbox } from '@awesome-cordova-plugins/we-cap-inbox';
+import { NotificationResponse, WECapInbox } from '@awesome-cordova-plugins/we-cap-inbox';
 
 const NotificationInbox: React.FC = () => {
     const [notificationList, setNotificationList] = useState<any[]>([]);
@@ -11,10 +11,10 @@ const NotificationInbox: React.FC = () => {
     }, []);
 
     const getNotificationList = (lastNotification?: any) => {
-        WECapInbox.getNotificationList(lastNotification, (response: any) => {
+        WECapInbox.getNotificationList(lastNotification, function (response: NotificationResponse) {
             setNotificationList(prevList => [...prevList, ...response.messageList]);
             setHasNext(response.hasNext);
-            console.log("WebEngage: Success! notification List - ", response);
+            console.log("WebEngage: Success! notification List - ", JSON.stringify(response));
         }, (err: any) => {
             console.log("WebEngage: Error! notification List", err);
         });

@@ -61,7 +61,7 @@ const Home: React.FC = () => {
   }
 
   const getNotificationCount = () => {
-    WECapInbox.getNotificationCount(function(count: any) {
+    WECapInbox.getNotificationCount(function(count: number) {
       console.log("WebEngage: Success! notification count is - ",count)
     }, function(err: any) {
       console.log("WebEngage: Error! notification Count",err)
