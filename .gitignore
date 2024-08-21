@@ -10,3 +10,9 @@ build/asset-manifest.json
 build/*
 webengage/*
 we-cap-inbox/*
+we-cap-core/
+we-cap-ni/
+we-cordova/
+we-cordova-ni/
+yarn.lock
+build/
