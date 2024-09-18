@@ -7,8 +7,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
+            
+            self.swizzlewillPresentNotification()
+            
+            return true
+        }
+
+        func swizzlewillPresentNotification(){
+            let selector = #selector(UNUserNotificationCenterDelegate.userNotificationCenter(_:willPresent:withCompletionHandler:))
+            swizzleMethodWithBlock(for: NotificationRouter.self, originalSelector: selector) { (self, center, notification, completionHandler) in
+                if let userInfo = notification.request.content.userInfo as? [String: Any],
+                    let source = userInfo["source"] as? String, source == "webengage" {
+                    print("DEBUG: Will present has been called for webengage notification")
+                    completionHandler([.alert, .sound, .badge])
+                }
+            }
+        }
+        
+        func swizzleMethodWithBlock(for classType: AnyClass, originalSelector: Selector, block: @escaping (Any, UNUserNotificationCenter, UNNotification, @escaping (UNNotificationPresentationOptions) -> Void) -> Void) {
+            guard let originalMethod = class_getInstanceMethod(classType, originalSelector) else {
+                return
+            }
+            
+            let originalIMP = method_getImplementation(originalMethod)
+            
+            let newBlock: @convention(block) (Any, UNUserNotificationCenter, UNNotification, @escaping (UNNotificationPresentationOptions) -> Void) -> Void = { (self, center, notification, completionHandler) in
+                    // Skip the original method and only run custom block for specific case
+                    block(self, center, notification, completionHandler)
+                    // Call the original method for all other notifications
+                    let originalImplementation = unsafeBitCast(originalIMP, to: (@convention(c) (Any, Selector, UNUserNotificationCenter, UNNotification, @escaping (UNNotificationPresentationOptions) -> Void) -> Void).self)
+                    originalImplementation(self, originalSelector, center, notification, completionHandler)
+            }
+            
+            let newIMP = imp_implementationWithBlock(newBlock)
+            method_setImplementation(originalMethod, newIMP)
+        }
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+      NotificationCenter.default.post(name: .capacitorDidRegisterForRemoteNotifications, object: deviceToken)
+    }
+
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+      NotificationCenter.default.post(name: .capacitorDidFailToRegisterForRemoteNotifications, object: error)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

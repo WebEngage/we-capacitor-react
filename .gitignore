@@ -1,2 +1,8 @@
 /node_modules/
 /build/
+yarn.lock
+cordova-ni-plugin/*
+webengage/*
+we-cap-inbox/*
+android/.idea/*
+android/app/release/*

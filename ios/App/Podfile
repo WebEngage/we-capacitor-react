@@ -14,6 +14,7 @@ def capacitor_pods
   pod 'CapacitorApp', :path => '../../node_modules/@capacitor/app'
   pod 'CapacitorHaptics', :path => '../../node_modules/@capacitor/haptics'
   pod 'CapacitorKeyboard', :path => '../../node_modules/@capacitor/keyboard'
+  pod 'CapacitorPushNotifications', :path => '../../node_modules/@capacitor/push-notifications'
   pod 'CapacitorStatusBar', :path => '../../node_modules/@capacitor/status-bar'
   pod 'WebengageAndroidFcm', :path => '../../node_modules/webengage-android-fcm'
   pod 'CordovaPluginsStatic', :path => '../capacitor-cordova-ios-plugins'
@@ -24,16 +25,15 @@ target 'App' do
   # Add your Pods here
 end
 
-# ServiceExtension Target
-target 'NotificationService' do
-    pod 'WebEngageBannerPush'
-end
-
-# ContentExtension Target
-target 'NotificationViewController' do
-  pod 'WebEngageAppEx/ContentExtension'
-end
-
-post_install do |installer|
-  assertDeploymentTarget(installer)
+# post_install do |installer|
+#   assertDeploymentTarget(installer)
+# end
+post_install do |installer_representation|
+  assertDeploymentTarget(installer_representation)
+  installer_representation.pods_project.targets.each do |target|
+      target.build_configurations.each do |config|
+          config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
+          config.build_settings['BUILD_LIBRARY_FOR_DISTRIBUTION'] = 'YES'
+      end
+  end
 end
