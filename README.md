@@ -1,43 +1,78 @@
-# we-capacitor-react
+# WebEngage Capacitor 7 React Sample App
 
-Capcitor-React Sample App with WebEngage Integration
+A sample Ionic React app built with Capacitor 7, designed to demonstrate WebEngage SDK integration points.
 
-#### Requirements
+## Tech Stack
 
-    The following frameworks/IDE should be installed on your device before running this sample app:
+- **Capacitor**: 7.x
+- **Ionic React**: 8.x
+- **React**: 18.x
+- **Vite**: 5.x
+- **TypeScript**: 5.x
 
-    1. NodeJS
+## Getting Started
 
-    2. XCode
+### Prerequisites
 
-    3. CocoaPods
+- Node.js 20+
+- npm 9+
+- Android Studio (for Android builds)
+- Xcode (for iOS builds)
 
-#### Steps to run capacitor-react sample app:
+### Installation
 
-1. Open the file location of the project in terminal and execute below command to install the node modules:
+```bash
+npm install
+```
 
-   > npm i
+### Development
 
-2. Now execute below command to install the WebEngage latest plugin to the project:
+```bash
+npm run dev
+```
 
-   > npm install cordova-plugin-webengage
+### Build
 
-   > npm install @awesome-cordova-plugins/webengage
+```bash
+npm run build
+```
 
-3. Execute the below command to run the application:
+### Sync native projects
 
-   > ionic capacitor run ios
+```bash
+npx cap sync
+```
 
-   > ionic capacitor run android
+### Open native IDEs
 
-4. After any changes done to the application run the below commands
+```bash
+npx cap open android
+npx cap open ios
+```
 
-   > npm run build
+## Project Structure
 
-   > npx cap sync
+```
+src/
+├── App.tsx                    # Main app component with routing
+├── main.tsx                   # Entry point
+├── components/
+│   ├── MessageListItem.tsx    # Reusable list item with action handlers
+│   └── MessageListItem.css
+├── data/
+│   └── listItem.ts           # Data models and static data
+├── pages/
+│   ├── Home.tsx              # Main page with analytics, events, opt-in UI
+│   └── Home.css
+└── theme/
+    └── variables.css          # Ionic theme variables
+```
 
-   > npx cap copy android
+## WebEngage Integration
 
-   > npx cap sync android
+This app is pre-structured for WebEngage SDK integration. All interaction points are marked with `// TODO: Integrate WebEngage` comments. The UI provides:
 
-   > npx cap open android
+- User analytics (login, logout, set attributes)
+- Event tracking (screen names, custom events)
+- GAID tracking
+- User opt-in toggles (push, sms, email, in-app, whatsapp, viber)

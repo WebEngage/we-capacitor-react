@@ -1,10 +1,9 @@
-import { CapacitorConfig } from '@capacitor/cli';
+import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.webEngage.stageSwift',
-  appName: 'ionicTest',
-  webDir: 'build',
-  bundledWebRuntime: false
+  appId: 'com.webEngage.production',
+  appName: 'WECapacitorReact',
+  webDir: 'dist',
 };
 
 export default config;

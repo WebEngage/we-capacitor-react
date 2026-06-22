@@ -1,6 +1,6 @@
 require_relative '../../node_modules/@capacitor/ios/scripts/pods_helpers'
 
-platform :ios, '13.0'
+platform :ios, '14.0'
 use_frameworks!
 
 # workaround to avoid Xcode caching of Pods that requires
@@ -16,23 +16,12 @@ def capacitor_pods
   pod 'CapacitorKeyboard', :path => '../../node_modules/@capacitor/keyboard'
   pod 'CapacitorPushNotifications', :path => '../../node_modules/@capacitor/push-notifications'
   pod 'CapacitorStatusBar', :path => '../../node_modules/@capacitor/status-bar'
-  pod 'CordovaPluginsStatic', :path => '../capacitor-cordova-ios-plugins'
 end
 
 target 'App' do
   capacitor_pods
   # Add your Pods here
 end
-
-# ServiceExtension Target
-#target 'NotificationService' do
-#    pod 'WebEngageBannerPush'
-#end
-#
-## ContentExtension Target
-#target 'NotificationViewController' do
-#  pod 'WebEngageAppEx/ContentExtension'
-#end
 
 post_install do |installer|
   assertDeploymentTarget(installer)

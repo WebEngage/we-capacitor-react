@@ -1,6 +1,6 @@
-import MessageListItem from "../components/MessageListItem";
-import { useState } from "react";
-import { ListItem, getAnalytics, getEvents } from "../data/listItem";
+import MessageListItem from '../components/MessageListItem';
+import { useState } from 'react';
+import { ListItem, getAnalytics, getEvents } from '../data/listItem';
 import {
   IonContent,
   IonHeader,
@@ -14,17 +14,16 @@ import {
   IonToggle,
   IonLabel,
   IonItem,
-} from "@ionic/react";
-import "./Home.css";
-import { Webengage, WebengageUser } from "@awesome-cordova-plugins/webengage";
+} from '@ionic/react';
+import './Home.css';
 
 type NotificationType =
-  | "push"
-  | "sms"
-  | "email"
-  | "in_app"
-  | "whatsapp"
-  | "viber";
+  | 'push'
+  | 'sms'
+  | 'email'
+  | 'in_app'
+  | 'whatsapp'
+  | 'viber';
 
 const Home: React.FC = () => {
   const [analyticList, setAnalytics] = useState<ListItem[]>([]);
@@ -55,7 +54,8 @@ const Home: React.FC = () => {
   };
 
   const handleNotificationChange = (e: any, type: NotificationType) => {
-    WebengageUser.setUserOptIn(type, e.detail.checked);
+    // TODO: Integrate WebEngage setUserOptIn here
+    console.log(`User opt-in changed: ${type} = ${e.detail.checked}`);
     setUserOptInList({
       ...userOptInList,
       [type]: e.detail.checked,
@@ -63,7 +63,8 @@ const Home: React.FC = () => {
   };
 
   const startGAIDTracking = () => {
-    Webengage.startGAIDTracking();
+    // TODO: Integrate WebEngage startGAIDTracking here
+    console.log('Start GAID Tracking');
   };
 
   return (
