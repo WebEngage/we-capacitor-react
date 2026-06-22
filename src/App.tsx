@@ -2,6 +2,14 @@ import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
+import {
+  Webengage,
+  WebengagePush,
+  WebengageNotification,
+  WebengageUser,
+} from '@awesome-cordova-plugins/webengage';
+import { PushNotifications } from '@capacitor/push-notifications';
+import { WEAndroidFCM } from 'we-cap-android-fcm';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -23,6 +31,44 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 
 setupIonicReact();
+
+// Uncomment the below line after following push docs
+WEAndroidFCM.updateToken();
+
+registerForPushNotification();
+
+WebengagePush.onClick(function (deeplink: any, customData: any) {
+  console.log('Push clicked - deeplink:', deeplink, 'customData:', customData);
+});
+
+WebengageNotification.onPrepared(function (inAppData: any) {
+  console.log('In-app onPrepared- ', JSON.stringify(inAppData));
+});
+
+WebengageNotification.onShown(function (inAppData: any) {
+  console.log('In-app shown - ', JSON.stringify(inAppData));
+});
+
+WebengageNotification.onDismiss(function (inAppData: any) {
+  console.log('In-app dismissed- ', JSON.stringify(inAppData));
+});
+
+WebengageNotification.onClick(function (inAppData: any, actionId: any) {
+  console.log('In-app click- ', JSON.stringify(inAppData));
+});
+
+Webengage.engage();
+
+function registerForPushNotification() {
+  PushNotifications.register();
+  PushNotifications.requestPermissions().then((result) => {
+    if (result.receive === 'granted') {
+      WebengageUser.setDevicePushOptIn(true);
+    } else {
+      WebengageUser.setDevicePushOptIn(false);
+    }
+  });
+}
 
 const App: React.FC = () => {
   return (

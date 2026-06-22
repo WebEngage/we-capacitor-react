@@ -16,6 +16,7 @@ import {
   IonItem,
 } from '@ionic/react';
 import './Home.css';
+import { Webengage, WebengageUser } from '@awesome-cordova-plugins/webengage';
 
 type NotificationType =
   | 'push'
@@ -54,8 +55,7 @@ const Home: React.FC = () => {
   };
 
   const handleNotificationChange = (e: any, type: NotificationType) => {
-    // TODO: Integrate WebEngage setUserOptIn here
-    console.log(`User opt-in changed: ${type} = ${e.detail.checked}`);
+    WebengageUser.setUserOptIn(type, e.detail.checked);
     setUserOptInList({
       ...userOptInList,
       [type]: e.detail.checked,
@@ -63,8 +63,7 @@ const Home: React.FC = () => {
   };
 
   const startGAIDTracking = () => {
-    // TODO: Integrate WebEngage startGAIDTracking here
-    console.log('Start GAID Tracking');
+    Webengage.startGAIDTracking();
   };
 
   return (

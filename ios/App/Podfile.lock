@@ -12,6 +12,15 @@ PODS:
     - Capacitor
   - CapacitorStatusBar (7.0.6):
     - Capacitor
+  - CordovaPluginsStatic (7.6.7):
+    - CapacitorCordova
+    - WebEngage
+  - WebEngage (6.22.0):
+    - WebEngage/Core (= 6.22.0)
+    - WebEngage/Location (= 6.22.0)
+  - WebEngage/Core (6.22.0)
+  - WebEngage/Location (6.22.0):
+    - WebEngage/Core
 
 DEPENDENCIES:
   - "Capacitor (from `../../node_modules/@capacitor/ios`)"
@@ -21,6 +30,11 @@ DEPENDENCIES:
   - "CapacitorKeyboard (from `../../node_modules/@capacitor/keyboard`)"
   - "CapacitorPushNotifications (from `../../node_modules/@capacitor/push-notifications`)"
   - "CapacitorStatusBar (from `../../node_modules/@capacitor/status-bar`)"
+  - CordovaPluginsStatic (from `../capacitor-cordova-ios-plugins`)
+
+SPEC REPOS:
+  trunk:
+    - WebEngage
 
 EXTERNAL SOURCES:
   Capacitor:
@@ -37,6 +51,8 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/push-notifications"
   CapacitorStatusBar:
     :path: "../../node_modules/@capacitor/status-bar"
+  CordovaPluginsStatic:
+    :path: "../capacitor-cordova-ios-plugins"
 
 SPEC CHECKSUMS:
   Capacitor: 8ef25ba872436d2c5ac2a4791f7255529bdcd93b
@@ -46,7 +62,9 @@ SPEC CHECKSUMS:
   CapacitorKeyboard: a2e0869edd229490ce36aed2549c0d6b95e27ee8
   CapacitorPushNotifications: b8e30637549ce91468b8c4dddbef2657be831f4c
   CapacitorStatusBar: 416e9e53fd6397e668d4a181cd2131617d949bd6
+  CordovaPluginsStatic: c88acf13cd8726560d4388b57d822981b7e41027
+  WebEngage: 8141fc675408f036b65c5d05bd887dfdf04efe3a
 
-PODFILE CHECKSUM: 9764c4c41dddc4d4ca38f016f484900ba48c191a
+PODFILE CHECKSUM: a5489aa241a25b66194f14e486c48e4c785f534c
 
 COCOAPODS: 1.16.2

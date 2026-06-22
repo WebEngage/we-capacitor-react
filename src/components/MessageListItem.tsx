@@ -1,6 +1,7 @@
 import { IonItem, IonLabel, useIonAlert } from '@ionic/react';
 import { ListItem } from '../data/listItem';
 import './MessageListItem.css';
+import { Webengage, WebengageUser } from '@awesome-cordova-plugins/webengage';
 
 interface MessageListItemProps {
   message: ListItem;
@@ -21,8 +22,8 @@ const MessageListItem: React.FC<MessageListItemProps> = ({ message }) => {
               text: 'OK',
               role: 'confirm',
               handler(input) {
-                // TODO: Integrate WebEngage login
-                console.log('Login:', input[0]);
+                console.log(input[0]);
+                WebengageUser.login(String(input[0]));
               },
             },
           ],
@@ -40,8 +41,7 @@ const MessageListItem: React.FC<MessageListItemProps> = ({ message }) => {
               text: 'OK',
               role: 'confirm',
               handler() {
-                // TODO: Integrate WebEngage logout
-                console.log('Logout');
+                WebengageUser.logout();
               },
             },
           ],
@@ -58,8 +58,7 @@ const MessageListItem: React.FC<MessageListItemProps> = ({ message }) => {
               text: 'OK',
               role: 'confirm',
               handler(input) {
-                // TODO: Integrate WebEngage setAttribute
-                console.log('First Name:', input[0]);
+                WebengageUser.setAttribute('we_first_name', input[0]);
               },
             },
           ],
@@ -77,8 +76,7 @@ const MessageListItem: React.FC<MessageListItemProps> = ({ message }) => {
               text: 'OK',
               role: 'confirm',
               handler(input) {
-                // TODO: Integrate WebEngage setAttribute
-                console.log('Last Name:', input[0]);
+                WebengageUser.setAttribute('we_last_name', input[0]);
               },
             },
           ],
@@ -96,8 +94,7 @@ const MessageListItem: React.FC<MessageListItemProps> = ({ message }) => {
               text: 'OK',
               role: 'confirm',
               handler(input) {
-                // TODO: Integrate WebEngage setAttribute
-                console.log('Email:', input[0]);
+                WebengageUser.setAttribute('we_email', input[0]);
               },
             },
           ],
@@ -115,8 +112,7 @@ const MessageListItem: React.FC<MessageListItemProps> = ({ message }) => {
               text: 'OK',
               role: 'confirm',
               handler(input) {
-                // TODO: Integrate WebEngage setAttribute
-                console.log('Hashed Email:', input[0]);
+                WebengageUser.setAttribute('we_hashed_email', input[0]);
               },
             },
           ],
@@ -134,8 +130,7 @@ const MessageListItem: React.FC<MessageListItemProps> = ({ message }) => {
               text: 'OK',
               role: 'confirm',
               handler(input) {
-                // TODO: Integrate WebEngage setAttribute
-                console.log('Phone:', input[0]);
+                WebengageUser.setAttribute('we_phone', input[0]);
               },
             },
           ],
@@ -153,8 +148,7 @@ const MessageListItem: React.FC<MessageListItemProps> = ({ message }) => {
               text: 'OK',
               role: 'confirm',
               handler(input) {
-                // TODO: Integrate WebEngage setAttribute
-                console.log('Hashed Phone:', input[0]);
+                WebengageUser.setAttribute('we_hashed_phone', input[0]);
               },
             },
           ],
@@ -163,8 +157,6 @@ const MessageListItem: React.FC<MessageListItemProps> = ({ message }) => {
         break;
       }
       case 'Set User Location': {
-        // TODO: Integrate WebEngage location tracking
-        console.log('Set User Location');
         break;
       }
       case 'Set Screen Name': {
@@ -177,8 +169,7 @@ const MessageListItem: React.FC<MessageListItemProps> = ({ message }) => {
               text: 'OK',
               role: 'confirm',
               handler(input) {
-                // TODO: Integrate WebEngage screen tracking
-                console.log('Screen:', input[0]);
+                Webengage.screen(String(input[0]));
               },
             },
           ],
@@ -196,8 +187,7 @@ const MessageListItem: React.FC<MessageListItemProps> = ({ message }) => {
               text: 'OK',
               role: 'confirm',
               handler(input) {
-                // TODO: Integrate WebEngage event tracking
-                console.log('Event:', input[0]);
+                Webengage.track(String(input[0]));
               },
             },
           ],
