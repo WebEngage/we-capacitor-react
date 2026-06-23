@@ -50,5 +50,11 @@
 		<string>fetch</string>
 		<string>remote-notification</string>
 	</array>
+	<key>WEGLogLevel</key>
+	<string>VERBOSE</string> <!-- or DEFAULT -->
+	<key>WEGEnvironment</key>
+	<string>DEFAULT</string> <!-- or DEFAULT -->
+	<key>WEGLicenseCode</key>
+	<string>WEBENGAGE_LICENSE_CODE</string>
 </dict>
 </plist>

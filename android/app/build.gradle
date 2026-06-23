@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "com.webEngage.production"
+    namespace "com.webengage.production"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.webEngage.production"
+        applicationId "com.webengage.production"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -42,7 +42,7 @@ dependencies {
     implementation project(':capacitor-cordova-android-plugins')
 
     // Firebase Messaging for push notifications
-    implementation 'com.google.firebase:firebase-messaging:+'
+    api 'com.google.firebase:firebase-messaging:24.0.0'
 }
 
 apply from: 'capacitor.build.gradle'

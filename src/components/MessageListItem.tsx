@@ -15,19 +15,50 @@ const MessageListItem: React.FC<MessageListItemProps> = ({ message }) => {
       case 'Perform Login': {
         presentAlert({
           header: 'Alert',
-          message: 'Enter your user name.',
+          message: 'Enter your user name and token',
+          inputs: [
+            { name: 'username', type: 'text', placeholder: 'User Name' },
+            { name: 'token', type: 'text', placeholder: 'JWT Token' },
+          ],
           buttons: [
             { text: 'Cancel', role: 'cancel' },
             {
               text: 'OK',
               role: 'confirm',
-              handler(input) {
-                console.log(input[0]);
-                WebengageUser.login(String(input[0]));
+              handler(input: any) {
+                const username = input.username;
+                const secureToken = input.token;
+                console.log('Username:', username);
+                console.log('JWT Token:', secureToken);
+                WebengageUser.login(String(username), String(secureToken));
               },
             },
           ],
-          inputs: [{ placeholder: 'UserName' }],
+        });
+        break;
+      }
+      case 'Update Secure Token': {
+        presentAlert({
+          header: 'Alert',
+          message: 'Enter your user name and token',
+          inputs: [
+            { name: 'username', type: 'text', placeholder: 'User Name' },
+            { name: 'token', type: 'text', placeholder: 'JWT Token' },
+          ],
+          buttons: [
+            { text: 'Cancel', role: 'cancel' },
+            {
+              text: 'OK',
+              role: 'confirm',
+              handler(input: any) {
+                const username = input.username;
+                const secureToken = input.token;
+                console.log('Username:', username);
+                console.log('JWT Token:', secureToken);
+                WebengageUser.setSecureToken(String(username), String(secureToken));
+              },
+            },
+          ],
         });
         break;
       }
@@ -157,6 +188,28 @@ const MessageListItem: React.FC<MessageListItemProps> = ({ message }) => {
         break;
       }
       case 'Set User Location': {
+        presentAlert({
+          header: 'Alert',
+          message: 'Enter Latitude and Longitude',
+          inputs: [
+            { name: 'latitude', type: 'text', placeholder: 'Latitude' },
+            { name: 'longitude', type: 'text', placeholder: 'Longitude' },
+          ],
+          buttons: [
+            { text: 'Cancel', role: 'cancel' },
+            {
+              text: 'OK',
+              role: 'confirm',
+              handler(input: any) {
+                const latitude = input.latitude;
+                const longitude = input.longitude;
+                console.log('latitude:', latitude);
+                console.log('longitude:', longitude);
+                WebengageUser.setLocation(latitude, longitude);
+              },
+            },
+          ],
+        });
         break;
       }
       case 'Set Screen Name': {

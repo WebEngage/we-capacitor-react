@@ -1,4 +1,4 @@
-package com.webEngage.production;
+package com.webengage.production;
 
 import com.getcapacitor.BridgeActivity;
 

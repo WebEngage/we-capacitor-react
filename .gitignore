@@ -27,3 +27,5 @@ npm-debug.log*
 # Capacitor native projects (optional - uncomment if you want to track them)
 # android/
 # ios/
+yarn.lock
+package-lock.json

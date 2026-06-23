@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@awesome-cordova-plugins/core": "^9.2.0",
+    "@awesome-cordova-plugins/we-cap-inbox": "^9.2.0",
     "@awesome-cordova-plugins/webengage": "^9.2.0",
     "@capacitor/android": "^7.2.0",
     "@capacitor/app": "^7.0.0",
@@ -28,17 +29,22 @@
     "react-router": "^5.3.4",
     "react-router-dom": "^5.3.4",
     "rxjs": "^7.8.2",
-    "we-cap-android-fcm": "^1.0.0"
+    "we-cap-android-fcm": "^1.0.0",
+    "we-notificationinbox-cordova": "^1.0.1"
   },
   "devDependencies": {
     "@capacitor/cli": "^7.2.0",
-    "@types/react": "^18.3.2",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11",
     "@types/react-router": "^5.1.20",
     "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "^4.3.1",
     "typescript": "^5.5.0",
     "vite": "^5.4.0"
+  },
+  "overrides": {
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11"
   },
   "description": "WebEngage Capacitor 7 React Sample App"
 }

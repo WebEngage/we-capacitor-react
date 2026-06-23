@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.webEngage.production',
+  appId: 'com.webengage.production',
   appName: 'WECapacitorReact',
   webDir: 'dist',
 };

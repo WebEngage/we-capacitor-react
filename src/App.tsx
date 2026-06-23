@@ -2,14 +2,16 @@ import { Redirect, Route } from 'react-router-dom';
 import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
+import NotificationInbox from './pages/NotificationInbox';
 import {
   Webengage,
   WebengagePush,
   WebengageNotification,
   WebengageUser,
+  WebengageJwtManager,
 } from '@awesome-cordova-plugins/webengage';
 import { PushNotifications } from '@capacitor/push-notifications';
-import { WEAndroidFCM } from 'we-cap-android-fcm';
+// import { WEAndroidFCM } from 'we-cap-android-fcm';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -33,12 +35,20 @@ import './theme/variables.css';
 setupIonicReact();
 
 // Uncomment the below line after following push docs
-WEAndroidFCM.updateToken();
+// WEAndroidFCM.updateToken();
 
-registerForPushNotification();
+// registerForPushNotification();
 
 WebengagePush.onClick(function (deeplink: any, customData: any) {
   console.log('Push clicked - deeplink:', deeplink, 'customData:', customData);
+});
+
+WebengageJwtManager.tokenInvalidatedCallback(function (args: any) {
+  console.log('WebEngage: Invalid Token passed. Please update your token args- ', args);
+  alert('Invalid Token passed. Please update your token');
+  console.log('WebEngage: 401: Updating WebEngage Token!');
+  // Pass your updated secureToken
+  // WebengageUser.setSecureToken(userId, secureToken)
 });
 
 WebengageNotification.onPrepared(function (inAppData: any) {
@@ -59,16 +69,55 @@ WebengageNotification.onClick(function (inAppData: any, actionId: any) {
 
 Webengage.engage();
 
-function registerForPushNotification() {
-  PushNotifications.register();
-  PushNotifications.requestPermissions().then((result) => {
-    if (result.receive === 'granted') {
-      WebengageUser.setDevicePushOptIn(true);
+// function registerForPushNotification() {
+//   PushNotifications.register();
+//   PushNotifications.requestPermissions().then((result) => {
+//     if (result.receive === 'granted') {
+//       WebengageUser.setDevicePushOptIn(true);
+//     } else {
+//       WebengageUser.setDevicePushOptIn(false);
+//     }
+//   });
+// }
+
+async function initWePush() {
+  // Webengage.engage();
+  console.log("push initWePush called")
+
+
+    // Step 2: Request push permission and register with FCM
+    const permStatus = await PushNotifications.requestPermissions();
+    if (permStatus.receive !== 'granted') {
+      console.warn('Push notification permission not granted');
+      return;
     } else {
-      WebengageUser.setDevicePushOptIn(false);
+      console.warn('Push notification permission granted');
+      // Important for Android 13+ for push permission
+      WebengageUser.setDevicePushOptIn(true);
     }
-  });
-}
+
+    await PushNotifications.register();
+
+    // NOTE - Using @capacitor/push-notifications listeners to replicate Client's behavior, No code related to WebEngage here!
+    PushNotifications.addListener('registration', (token) => {
+      console.log('FCM Token from @capacitor/push-notifications in App.tsx: ', token.value);
+    });
+
+    PushNotifications.addListener('registrationError', (error) => {
+      console.error('Push registration error:', error);
+    });
+
+    // Step 4: Pass push payload to WebEngage
+    PushNotifications.addListener('pushNotificationReceived', (notification) => {
+      console.log('Push received from @capacitor/push-notifications in App.tsx: ', notification);
+    });
+
+    PushNotifications.addListener('pushNotificationActionPerformed', (action) => {
+      console.log('Push action performed from @capacitor/push-notifications in App.tsx:', action);
+    });
+  }
+
+initWePush();
 
 const App: React.FC = () => {
   return (
@@ -80,6 +129,9 @@ const App: React.FC = () => {
           </Route>
           <Route path="/home" exact={true}>
             <Home />
+          </Route>
+          <Route path="/notificationInbox" exact={true}>
+            <NotificationInbox />
           </Route>
         </IonRouterOutlet>
       </IonReactRouter>
