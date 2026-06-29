@@ -30,3 +30,7 @@ DerivedData/
 *.swo
 .DS_Store
 build/static/css/main.c47b8635.css
+build/asset-manifest.json
+build/index.html
+build/service-worker.js
+build/service-worker.js.map
