@@ -14,9 +14,11 @@ import {
   IonToggle,
   IonLabel,
   IonItem,
+  IonButton,
 } from "@ionic/react";
 import "./Home.css";
 import { Webengage, WebengageUser } from "@awesome-cordova-plugins/webengage";
+import { useHistory } from "react-router-dom";
 
 type NotificationType =
   | "push"
@@ -29,6 +31,7 @@ type NotificationType =
 const Home: React.FC = () => {
   const [analyticList, setAnalytics] = useState<ListItem[]>([]);
   const [eventList, setEvents] = useState<ListItem[]>([]);
+  const history = useHistory();
 
   const [userOptInList, setUserOptInList] = useState<
     Record<NotificationType, boolean>
@@ -42,6 +45,7 @@ const Home: React.FC = () => {
   });
 
   useIonViewWillEnter(() => {
+    Webengage.screen("home");
     const anltcs = getAnalytics();
     const events = getEvents();
     setAnalytics(anltcs);
@@ -128,6 +132,23 @@ const Home: React.FC = () => {
               />
             </IonItem>
           ))}
+        </IonList>
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle size="large">Screen Navigation</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+
+        <IonList>
+          <IonButton expand="block" onClick={() => history.push("/home")}>
+            Home
+          </IonButton>
+          <IonButton expand="block" onClick={() => history.push("/cart")}>
+            Cart
+          </IonButton>
+          <IonButton expand="block" onClick={() => history.push("/orders")}>
+            Orders
+          </IonButton>
         </IonList>
       </IonContent>
     </IonPage>

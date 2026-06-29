@@ -3,10 +3,11 @@ import {
   IonApp,
   IonRouterOutlet,
   setupIonicReact,
-  useIonViewWillEnter,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+import Orders from "./pages/Orders";
 import {
   Webengage,
   WebengagePush,
@@ -86,6 +87,12 @@ const App: React.FC = () => {
           </Route>
           <Route path="/home" exact={true}>
             <Home />
+          </Route>
+          <Route path="/cart" exact={true}>
+            <Cart />
+          </Route>
+          <Route path="/orders" exact={true}>
+            <Orders />
           </Route>
         </IonRouterOutlet>
       </IonReactRouter>
